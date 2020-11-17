@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+    app:
+        build: .
+        restart: always
+        ports:
+            - "8080:1720"
+        depends_on:
+            - mongo
+        networks:
+            - app
+        links:
+            - mongo
+        environment:
+            - MONGO_URI=mongodb://mongo:27017/automate-app
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"
+        networks:
+            - app
+        logging:
+            driver: none
+
+networks:
+    app:

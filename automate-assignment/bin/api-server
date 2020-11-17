@@ -1,0 +1,47 @@
+#! /usr/bin/env node
+const { Server, Logger } = require( '../app' );
+
+( async function __initializeServer() {
+
+    try {
+
+        Logger.trace( 'Server initialization started' );
+        await Server.initServer();
+        Logger.trace( 'Server successfully initialized' );
+
+        Logger.trace( 'Starting server' );
+        await Server.startServer();
+        Logger.info( 'Server started' );
+
+    } catch ( error ) {
+
+        Logger.fatal( error, 'There was an error in starting the Server.' );
+
+        process.exit( 1 );
+
+    }
+
+} )();
+
+const __handleInterrupt = async function __handleInterrupt() {
+
+    try {
+
+        await Server.stopServer();
+
+        process.exit( 0 );
+
+    } catch ( error ) {
+
+        Logger.fatal( error, 'There was an error in closing all connections correctly. Forcefully exiting.' );
+        setTimeout( () => {
+
+            process.exit( 1 );
+
+        }, 5000 );
+
+    }
+
+};
+
+[ 'SIGINT', 'SIGTERM' ].forEach( _signal => process.on( _signal, __handleInterrupt ) );

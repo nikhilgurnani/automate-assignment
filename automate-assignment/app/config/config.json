@@ -1,0 +1,80 @@
+{
+    "app": {
+        "port": {
+            "$default": 1720,
+            "$env": "APP_PORT"
+        }
+    },
+    "persistence": {
+        "mongo": {
+            "uri": {
+                "$env": "MONGO_URI",
+                "$default": "mongodb://127.0.0.1:27017/automate-file-system"
+            },
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true,
+            "debug": true
+        }
+    },
+    "logger": {
+        "pino": {
+            "name": "automate-api",
+            "level": {
+                "$filter": {
+                    "$env": "NODE_ENV"
+                },
+                "production": "info",
+                "development": "trace",
+                "$default": "trace"
+            },
+            "prettyPrint": {
+                "$env": "LOGGER_PRETTY_PRINT",
+                "$default": false
+            },
+            "customLevels": {
+                "ops": 45
+            },
+            "ignorePaths": [
+                "/api/health",
+                "/api/health/status"
+            ],
+            "redact": {
+                "paths": [
+                    "req.headers.authorization"
+                ],
+                "censor": "*** REDACTED ***"
+            }
+        },
+        "transport": {
+            "index": {
+                "$env": "LOGGING_TRANSPORT_INDEX",
+                "$default": "automate-api-log"
+            },
+            "type": "log",
+            "consistency": "one",
+            "node": {
+                "$env": "LOGGING_TRANSPORT_NODE",
+                "$default": "http://localhost:9200"
+            },
+            "es-version": 7,
+            "bulk-size": 200,
+            "ecs": true
+        }
+    },
+    "security": {
+        "jwt": {
+            "issuer": "Automate.io",
+            "audience": "https://automate.io",
+            "subject": "info@automate.io",
+            "algorithm": "RS256",
+            "expiresIn": {
+                "$filter": {
+                    "$env": "NODE_ENV"
+                },
+                "development": "14d",
+                "production": "7d",
+                "$default": "1d"
+            }
+        }
+    }
+}
