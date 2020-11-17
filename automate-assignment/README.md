@@ -11,7 +11,7 @@ The app is dockerised with 2 containers:
 * MongoDB Container
 
 To run the app, perform the following steps:
-* Unzip the code archive
+* Clone the repo
 * Open the terminal and change present working directory to the folder **automate-assignment** extracted from the archive.
 * The Application uses JWT for authentication tokens. In order to sign and verify those, a pair of public / private keys is required when the application is being setup for the first time. Simply run the following command in the **automate-assignment** folder and it will generate the keys for you. For the sake of simplicity, when asked for a passphrase, leave it empty and press enter.
    ```bash
