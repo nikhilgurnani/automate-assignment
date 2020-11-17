@@ -1,7 +1,6 @@
 # Automate.io Assignment
 
 Hi. This is my submission for the automate.io assignment for the Sr. Backend Position.
-Postman collection [here](https://www.getpostman.com/collections/23979759fc8039cfd1a2).
 ## Pre-requisites
 * Must have Docker and Docker Compose installed and Docker daemon running
 * Must have Postman installed.
