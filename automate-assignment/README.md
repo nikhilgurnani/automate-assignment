@@ -1,6 +1,6 @@
 # Automate.io Assignment
 
-Hi. This is my submission for the automate.io assignment for the Sr. Backend Position. The description of the assignment can be found [here](https://docs.google.com/document/d/1o3rplG80jnlgb-HIBns2UhZFc-HzwBTBe_WAy8EiMfU/edit).
+Hi. This is my submission for the automate.io assignment for the Sr. Backend Position.
 Postman collection [here](https://www.getpostman.com/collections/23979759fc8039cfd1a2).
 ## Pre-requisites
 * Must have Docker and Docker Compose installed and Docker daemon running
